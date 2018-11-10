@@ -25,33 +25,33 @@ body>a{display: none;}
 
 .mask{display: none; position:fixed;top:0;left:0;z-index:11;width:100%;height:150%;background:-webkit-radial-gradient(center,rgba(0,0,0,.5),rgba(0,0,0,1) 50%);background:#000;opacity:.7}
 .loading,.tsPop{
-    display: none;
-    position: fixed;
-    top: 30%;
-    left: 10%;
-    width: 80%;
-    padding-bottom: 0.6rem;
-    border-radius: .3rem;
-    z-index: 13;
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 10%;
+  width: 80%;
+  padding-bottom: 0.6rem;
+  border-radius: .3rem;
+  z-index: 13;
 }
 /*square*/
 .square{
-    width: 30px;
-    height: 30px;
-    border:1px  rgba(255,255,255,1) solid;
-    margin: auto;
-    position: relative;
-    animation: fill_color 5s linear infinite;
+  width: 30px;
+  height: 30px;
+  border:1px  rgba(255,255,255,1) solid;
+  margin: auto;
+  position: relative;
+  animation: fill_color 5s linear infinite;
 }
 .square:after{
-    width: 4px;
-    height: 4px;
-    position: absolute;
-    content: "";
-    background-color: rgba(255,255,255,1);
-    top: -8px;
-    left: 0px;
-    animation: square_check 1s ease-in-out infinite;
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  content: "";
+  background-color: rgba(255,255,255,1);
+  top: -8px;
+  left: 0px;
+  animation: square_check 1s ease-in-out infinite;
 }
 @keyframes square_check{
   25%{ left: 32px; top: -8px;}

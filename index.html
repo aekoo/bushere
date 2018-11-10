@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+  <title>BusHere</title>
+  <link rel="stylesheet" href="css/index.css">
+  <script>
+    var documentElement = document.documentElement;
+    function callback() {
+      var clientWidth = documentElement.clientWidth;
+      clientWidth = clientWidth < 780 ? clientWidth : 780;
+      documentElement.style.fontSize = clientWidth / 10 + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', callback)
+    window.addEventListener('orientationchange' in window ? 'orientationchange' : 'resize', callback)
+  </script>
+</head>
+
+<body>
+
+  <div class="main">
+    <ul class="container">
+      <div class="search">
+        <input type="text" placeholder="搜索公交线路" id="lineName" />
+        <span class="searchBtn">查询</span>
+      </div>
+      <ul class="linelist">
+        <!-- <li>
+            <h1 class="linename">93路</h1>
+            <div class="linedesc">
+                <p class="direction">武宁南路武定路→桂平路江安路</p>
+                <p class="linetime"><span>首班：05:30</span><span>末班：23:00</span></p>
+            </div>
+        </li>
+        <li>
+            <h1 class="linename">93路</h1>
+            <div class="linedesc">
+                <p class="direction">桂平路江安路→武宁南路武定路</p>
+                <p class="linetime"><span>首班：05:30</span><span>末班：23:00</span></p>
+            </div>
+        </li> -->
+      </ul>
+  </div>
+  </div>
+  <div class="busStationList" style="display: none">
+    <div class="busline">
+      <h1 class="buslinename">93路</h1>
+      <div class="buslinedesc">
+        <p class="busdirection">桂平路江安路→武宁南路武定路</p>
+        <p class="buslinetime"><span>首班：05:30</span><span>末班：23:00</span></p>
+      </div>
+    </div>
+    <ul class="stationlist">
+      <li>
+        <a href="javascipt:;">
+          <div class="list-icon detail-line-no -ft-small"> 1</div>
+          <div class="bus-info">
+            <span class="-ft-middle stationname">虹漕南路江安路<span>
+                <br>
+              </span></span></div>
+          <p class="rt-info">沪B-WX785<span>还有1站</span><span>2分钟</span></p>
+          <em class="list_line"></em>
+        </a>
+      </li>
+      <li>
+        <a href="javascipt:;">
+          <div class="list-icon detail-line-no -ft-small"> 2</div>
+          <div class="bus-info">
+            <span class="-ft-middle stationname">虹漕南路浦北路<span>
+                <br>
+              </span></span></div>
+          <p class="rt-info">沪B-WX785<span>还有1站</span><span>2分钟</span></p>
+          <em class="list_line"></em>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- 加载弹层 start -->
+  <div class="loading">
+    <!-- <figure><img style="border-radius:10px;" src="img/loading.gif"></figure> -->
+    <div class="square"></div>
+  </div>
+  <!-- 加载弹层 end -->
+  <div class="mask"></div>
+  <div id="container"></div>
+</body>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=wBRCIrr2jaRMvq1NuE5GxITfsqfmxINs"></script>
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/index.js"></script>
+
+</html>

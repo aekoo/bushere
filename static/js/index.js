@@ -72,12 +72,12 @@ function jtcxSearch(linename) {
         var linename = (buslist[i].linename || buslist[i].name).match(/^(.*)\((.*)\)/);
 
         $('.linelist').append('<li>\
-                    <h1 class="linename">'+ linename[1] + '</h1>\
-                    <div class="linedesc">\
-                        <p class="direction">'+ linename[2] + '</p>\
-                        <p class="linetime"><span>首班：5:30</span><span>末班：23:00</span></p>\
-                    </div>\
-                </li>');
+            <h1 class="linename">'+ linename[1] + '</h1>\
+            <div class="linedesc">\
+              <p class="direction">'+ linename[2] + '</p>\
+              <p class="linetime"><span>首班：5:30</span><span>末班：23:00</span></p>\
+            </div>\
+          </li>');
       }
     },
     error: function () {
@@ -103,13 +103,13 @@ $('.linelist').on('click', 'li', function () {
   $('.busdirection').html($(this).find('.direction').text());
   var site = buslist[$(this).index()].site.split(';');
   for (var i in site) {
-    if (site.hasOwnProperty(i)) {
+    if (site[i]) {
       var station = site[i].split(',')
       $('.stationlist').append('<li><a href="javascipt:;">\
-                <div class="list-icon detail-line-no -ft-small">  '+ (parseInt(i) + 1) + '</div>\
-                <div class="bus-info"><span class="-ft-middle stationname">'+ station[0] + '<span><br></span></span></div>\
-                <p class="rt-info">无实时信息</p>\
-                </a></li>');
+        <div class="list-icon detail-line-no -ft-small">  '+ (parseInt(i) + 1) + '</div>\
+        <div class="bus-info"><span class="-ft-middle stationname">'+ station[0] + '<span><br></span></span></div>\
+        <p class="rt-info">等待发车</p>\
+        </a></li>');
     }
   }
   $('.busStationList').show().siblings().hide();
@@ -139,6 +139,7 @@ $('.stationlist').on('click', 'li', function () {
     success: function (res) {
       $('.loading, .mask').hide();
       var rtinfo = JSON.parse(res).result.realtime;
+      if (!rtinfo) return;
       var arrive = parseInt(rtinfo.time / 60);
       _this.find('.rt-info').html(rtinfo.terminal + '<span>还有' + rtinfo.stopdis + '站</span><span>' + arrive + '分钟</span>').show();
     },

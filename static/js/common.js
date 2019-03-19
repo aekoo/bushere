@@ -8,7 +8,7 @@ window.alert = function (msg) {
   obj.innerHTML = msg;
   document.body.appendChild(obj);
   window.alert.time = setTimeout(function () {
-    // document.body.removeChild(document.querySelector('.alertBox'))
+    document.body.removeChild(document.querySelector('.alertBox'))
   }, 1500);
 }
 

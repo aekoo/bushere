@@ -47,6 +47,7 @@ function jtcxSearch(linename) {
     , a = "TYMON_" + b;
   $.ajax({
     url: 'http://182.254.143.172/fkgis-gateway/' + a + '/gis/keyquery.json',
+    // url: 'http://10.0.52.42:8082/api/getline',
     type: 'GET',
     dataType: 'JSON',
     cache: false,
@@ -88,7 +89,9 @@ function jtcxSearch(linename) {
 };
 /** 百度搜索end **/
 
-
+$('.goback').click(function () {
+  $('.main').show().siblings().hide();
+})
 $('.searchBtn').click(function () {
   var linename = $('#lineName').val();
   if (!linename) return alert("请输入查询的线路");
@@ -108,7 +111,7 @@ $('.linelist').on('click', 'li', function () {
       $('.stationlist').append('<li><a href="javascipt:;">\
         <div class="list-icon detail-line-no -ft-small">  '+ (parseInt(i) + 1) + '</div>\
         <div class="bus-info"><span class="-ft-middle stationname">'+ station[0] + '<span><br></span></span></div>\
-        <p class="rt-info">等待发车</p>\
+        <p class="rt-info"></p>\
         </a></li>');
     }
   }
@@ -116,7 +119,7 @@ $('.linelist').on('click', 'li', function () {
 });
 $('.stationlist').on('click', 'li', function () {
   var _this = $(this);
-  $('.loading, .mask').show();
+  // $('.loading, .mask').show();
   $('.rt-info').hide();
   _this.addClass('close').siblings().removeClass('close');
   _this.find('.rt-info').show();
@@ -126,6 +129,7 @@ $('.stationlist').on('click', 'li', function () {
   var endstop = $('.busdirection').text().split('-')[1];
   $.ajax({
     url: 'http://www.jtcx.sh.cn/dynamictraffic_interface/web/trafficline/carmonitor',
+    // url: 'http://10.0.52.42:8082/api/carmonitor',
     type: 'GET',
     dataType: 'JSON',
     cache: false,
@@ -137,9 +141,9 @@ $('.stationlist').on('click', 'li', function () {
       time: new Date().getTime(),
     },
     success: function (res) {
-      $('.loading, .mask').hide();
+      // $('.loading, .mask').hide();
       var rtinfo = JSON.parse(res).result.realtime;
-      if (!rtinfo) return;
+      if (!rtinfo) return _this.find('.rt-info').html('等待发车').show();
       var arrive = parseInt(rtinfo.time / 60);
       _this.find('.rt-info').html(rtinfo.terminal + '<span>还有' + rtinfo.stopdis + '站</span><span>' + arrive + '分钟</span>').show();
     },

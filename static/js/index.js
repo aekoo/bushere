@@ -46,8 +46,8 @@ function jtcxSearch(linename) {
     , b = b + (1 == e.length ? "0" + e : e)
     , a = "TYMON_" + b;
   $.ajax({
-    url: 'http://182.254.143.172/fkgis-gateway/' + a + '/gis/keyquery.json',
-    // url: 'http://10.0.52.42:8082/api/getline',
+    // url: 'http://182.254.143.172/fkgis-gateway/' + a + '/gis/keyquery.json',
+    url: 'http://47.93.248.238:8081/api/getline',
     type: 'GET',
     dataType: 'JSON',
     cache: false,
@@ -80,6 +80,7 @@ function jtcxSearch(linename) {
             </div>\
           </li>');
       }
+      $('.container').show();
     },
     error: function () {
       $('.loading, .mask').hide();
@@ -115,6 +116,7 @@ $('.linelist').on('click', 'li', function () {
         </a></li>');
     }
   }
+  window.scrollTo(0, 0)
   $('.busStationList').show().siblings().hide();
 });
 $('.stationlist').on('click', 'li', function () {
@@ -128,8 +130,8 @@ $('.stationlist').on('click', 'li', function () {
   var startstop = $('.busdirection').text().split('-')[0];
   var endstop = $('.busdirection').text().split('-')[1];
   $.ajax({
-    url: 'http://www.jtcx.sh.cn/dynamictraffic_interface/web/trafficline/carmonitor',
-    // url: 'http://10.0.52.42:8082/api/carmonitor',
+    // url: 'http://www.jtcx.sh.cn/dynamictraffic_interface/web/trafficline/carmonitor',
+    url: 'http://47.93.248.238:8081/api/carmonitor',
     type: 'GET',
     dataType: 'JSON',
     cache: false,

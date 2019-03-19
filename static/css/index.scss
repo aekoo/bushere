@@ -8,9 +8,10 @@
   .search{
     display: flex;
     position: fixed;
-    left: 0;
+    width: 690px;
     top: 0;
-    right: 0;
+    // left: 0;
+    // right: 0;
     padding: 40px 30px;
     background: #fff;
     input{
@@ -40,6 +41,7 @@
     }
   }
   .container{
+    display: none;
     padding: 130px 30px;
     .linelist{
       padding-top: 40px;
@@ -78,11 +80,14 @@
     }
   }
 }
-.busStationList{
+.busStationList{    
+  margin: auto;
+  max-width: 10.0000rem;
+  background: #fff;
   .busline{
     display: flex;
     height: 130px;
-    background: #ebedf0;
+    background: #e0e7f1;
     .buslinename{
       width: 200px;
       margin: auto;

@@ -2,36 +2,38 @@ var linename_regexp = /(^地铁|^)(\d+|[^号支专快(地面)(高速)(全程)(�
 var buslist = [];
 
 /** 百度搜索start **/
-var map = new BMap.Map("container");
-var point = new BMap.Point(121.48789949, 31.24916171);
-map.centerAndZoom(point, 12);
+// var map = new BMap.Map("container");
+// var point = new BMap.Point(121.48789949, 31.24916171);
+// map.centerAndZoom(point, 12);
 
-var busline = new BMap.BusLineSearch(map, {
-  // renderOptions:{map:map,panel:"r-result"},
-  onGetBusListComplete: function (result) {
-    $('.loading, .mask').hide();
-    // console.log(result)
-    $('.linelist').html('');
-    if (result) {
-      for (var i in result.XA) {
-        var fstLine = result.getBusListItem(i);//获取第一个公交列表显示到map上
-        busline.getBusLine(fstLine);
-      }
-    }
-  },
-  onGetBusLineComplete: function (result) {
-    // console.log(result)
-    var linename = result.name.replace(/\(.+\)/, '')//.match(linename_regexp);
-    var direction = result.name.match(/^(.*)\((.*)\)/);
-    $('.linelist').append('<li>\
-            <h1 class="linename">'+ linename + '</h1>\
-            <div class="linedesc">\
-                <p class="direction">'+ direction[2] + '</p>\
-                <p class="linetime"><span>首班：'+ result.startTime + '</span><span>末班：' + result.endTime + '</span></p>\
-            </div>\
-        </li>');
-  },
-});
+// var busline = new BMap.BusLineSearch(map, {
+//   // renderOptions:{map:map,panel:"r-result"},
+//   onGetBusListComplete: function (result) {
+//     $('.loading, .mask').hide();
+//     // console.log(result)
+//     $('.linelist').html('');
+//     if (result) {
+//       for (var i in result.XA) {
+//         var fstLine = result.getBusListItem(i);//获取第一个公交列表显示到map上
+//         busline.getBusLine(fstLine);
+//       }
+//     }
+//   },
+//   onGetBusLineComplete: function (result) {
+//     // console.log(result)
+//     var linename = result.name.replace(/\(.+\)/, '')//.match(linename_regexp);
+//     var direction = result.name.match(/^(.*)\((.*)\)/);
+//     $('.linelist').append('<li>\
+//             <h1 class="linename">'+ linename + '</h1>\
+//             <div class="linedesc">\
+//                 <p class="direction">'+ direction[2] + '</p>\
+//                 <p class="linetime"><span>首班：'+ result.startTime + '</span><span>末班：' + result.endTime + '</span></p>\
+//             </div>\
+//         </li>');
+//   },
+// });
+
+/** 百度搜索end **/
 
 function jtcxSearch(linename) {
   var b = new Date
@@ -46,7 +48,6 @@ function jtcxSearch(linename) {
     , b = b + (1 == e.length ? "0" + e : e)
     , a = "TYMON_" + b;
   $.ajax({
-    // url: 'http://182.254.143.172/fkgis-gateway/' + a + '/gis/keyquery.json',
     url: 'http://47.93.248.238:8081/api/getline',
     type: 'GET',
     dataType: 'JSON',
@@ -59,7 +60,6 @@ function jtcxSearch(linename) {
       pageNumber: 1,
       pageCount: 1000,
       language: 0,
-      // callback: 'search_bus_station_line_callback',
       isresemble: 1,
       t: new Date().getTime()
     },
@@ -88,7 +88,6 @@ function jtcxSearch(linename) {
     }
   });
 };
-/** 百度搜索end **/
 
 $('.goback').click(function () {
   $('.main').show().siblings().hide();
@@ -130,7 +129,6 @@ $('.stationlist').on('click', 'li', function () {
   var startstop = $('.busdirection').text().split('-')[0];
   var endstop = $('.busdirection').text().split('-')[1];
   $.ajax({
-    // url: 'http://www.jtcx.sh.cn/dynamictraffic_interface/web/trafficline/carmonitor',
     url: 'http://47.93.248.238:8081/api/carmonitor',
     type: 'GET',
     dataType: 'JSON',

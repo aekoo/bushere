@@ -48,7 +48,7 @@ function jtcxSearch(linename) {
     , b = b + (1 == e.length ? "0" + e : e)
     , a = "TYMON_" + b;
   $.ajax({
-    url: 'http://47.93.248.238:8081/api/getline',
+    url: 'http://47.93.248.238/api/getline',
     type: 'GET',
     dataType: 'JSON',
     cache: false,
@@ -129,7 +129,7 @@ $('.stationlist').on('click', 'li', function () {
   var startstop = $('.busdirection').text().split('-')[0];
   var endstop = $('.busdirection').text().split('-')[1];
   $.ajax({
-    url: 'http://47.93.248.238:8081/api/carmonitor',
+    url: 'http://47.93.248.238/api/carmonitor',
     type: 'GET',
     dataType: 'JSON',
     cache: false,
